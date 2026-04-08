@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoSwap Dashboard - Add New Item</title>
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="./logo.png" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#4b6cb7",
+            secondary: "#3b5998",
+            accent: "#5f86d2",
+            light: "#b0c7f7",
+            dark: "#2c3e91",
+            sidebarBlue: "#1e40af",
+            signOutRed: "#dc2626",
+          },
+          fontFamily: {
+            sans: ["Poppins", "sans-serif"],
+            serif: ["Playfair Display", "serif"],
+          },
+          animation: {
+            float: "float 6s ease-in-out infinite",
+          },
+          keyframes: {
+            float: {
+              "0%,100%": { transform: "translateY(0)" },
+              "50%": { transform: "translateY(-14px)" },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    .gradient-text {
+      background: linear-gradient(90deg, #4b6cb7 0%, #3b5998 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    #sidebar {
+      min-width: 220px;
+      max-width: 220px;
+      background-color: #1b244a;
+      display: flex;
+      flex-direction: column;
+      padding-top: 1rem;
+    }
+
+    #sidebar nav a {
+      color: white;
+      font-weight: 500;
+    }
+    #sidebar nav a:hover:not(.active) {
+      background-color: #3b5998;
+      color: white;
+    }
+    #sidebar nav a.active {
+      background-color: #5f86d2;
+      color: white;
+    }
+
+    #signout-tab {
+      margin-top: auto;
+      background-color: #dc2626;
+      color: white;
+      font-weight: 600;
+    }
+    #signout-tab:hover {
+      background-color: #b91c1c;
+    }
+
+    body.dark {
+      background-color:#1f2937 ;
+      color: #d1d5db;
+    }
+    body.dark #sidebar {
+      background-color: #182b69;
+    }
+
+    #sidebar-search {
+      padding: 0 1rem 1rem 1rem;
+    }
+    #sidebar-search input {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+      transition: border-color 0.3s ease;
+    }
+    #sidebar-search input:focus {
+      outline: none;
+      border-color: #4b6cb7;
+      box-shadow: 0 0 0 3px rgb(75 108 183 / 0.3);
+      background-color: #1f2937;
+      color: #d1d5db;
+    }
+
+    #theme-toggle {
+      background-color: transparent !important;
+    }
+    body.dark #icon-sun {
+      display: block !important;
+      color: white;
+    }
+    body:not(.dark) #icon-moon {
+      display: block !important;
+      color: black;
+    }
+
+    /* Form Styles */
+    form label {
+      font-weight: 600;
+    }
+
+    .error {
+      color: #dc2626;
+      font-size: 0.875rem;
+    }
+
+    .image-preview-container {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .image-preview-container img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      border: 2px solid #4b6cb7;
+    }
+
+    .upload-btn {
+      background-color: #4b6cb7;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .upload-btn:hover {
+      background-color: #3b5998;
+    }
+  </style>
+</head>
+<body
+  class="font-sans text-gray-800 antialiased min-h-screen flex flex-col bg-blue-50 dark:bg-[#1e3a8a]"
+>
+  <!-- Navbar -->
+  <nav
+    class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur shadow-sm dark:bg-gray-800/90 flex items-center justify-between px-6 py-4"
+  >
+    <a href="index.html" class="flex items-center space-x-3">
+      <img src="./logo.png" alt="EcoSwap logo" class="h-12 w-auto" />
+      <span class="text-2xl font-bold gradient-text">EcoSwap</span>
+    </a>
+
+    <h1
+      class="text-2xl font-serif font-bold text-gray-800 dark:text-gray-200"
+    >
+      Dashboard
+    </h1>
+
+    <!-- Theme Toggle -->
+    <button
+      id="theme-toggle"
+      aria-label="Toggle dark/light mode"
+      class="px-4 py-2 rounded-md text-white hover:bg-accent transition flex items-center"
+      type="button"
+    >
+      <svg
+        id="icon-sun"
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 hidden"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414M18.364 18.364l-1.414-1.414M6.05 6.05L4.636 4.636M12 8a4 4 0 100 8 4 4 0 000-8z"
+        />
+      </svg>
+      <svg
+        id="icon-moon"
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 hidden"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex pt-20 pl-[220px] min-h-screen bg-white dark:bg-[#1f2937]">
+    <!-- Sidebar -->
+    <aside
+      id="sidebar"
+      class="fixed top-20 bottom-0 left-0 flex flex-col overflow-y-auto"
+    >
+      <div id="sidebar-search">
+        <input
+          type="text"
+          placeholder="Search..."
+          aria-label="Search"
+          class="dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600"
+        />
+      </div>
+
+      <nav class="flex flex-col mt-2 space-y-1 px-4 flex-grow">
+        <a
+          href="reqitem.html"
+          class="bg-primary rounded-md px-4 py-3 transition text-white font-medium"
+          >Request-Item</a
+        >
+        <a
+          href="reqitemp.html"
+          class="hover:bg-primary rounded-md px-4 py-3 cursor-default"
+          >Requested-Items</a
+        >
+      </nav>
+
+      <nav class="px-4 py-3">
+        <a
+          href="index.html"
+          id="signout-tab"
+          class="block rounded-md px-4 py-3 text-white transition"
+          >Sign Out</a
+        >
+      </nav>
+    </aside>
+
+    
+    <!-- Right Content Section with Add New Item Form -->
+<section
+  class="flex-1 bg-transparent dark:bg-[#1f2937] p-8 text-gray-800 dark:text-gray-200 max-w-3xl mx-auto rounded-none shadow-none flex flex-col justify-center min-h-[calc(100vh-5rem)]"
+>
+  <h2 class="text-3xl font-semibold mb-8 text-center">Request New Item</h2>
+<form id="itemForm" class="space-y-6">
+  <div>
+    <label for="category" class="block mb-2">Category:</label>
+    <select
+      id="category"
+      class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1f2937] p-3 text-base text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+    >
+      <option value="">Select</option>
+      <option>Electronics</option>
+      <option>Books</option>
+      <option>Clothing</option>
+      <option>Furniture</option>
+    </select>
+    <span class="error" id="error-category"></span>
+  </div>
+
+  <div>
+    <label for="itemName" class="block mb-2">Item Name:</label>
+    <input
+      type="text"
+      id="itemName"
+      class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1f2937] p-3 text-base text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+    />
+    <span class="error" id="error-itemName"></span>
+  </div>
+
+  <div>
+    <label for="description" class="block mb-2">Description:</label>
+    <textarea
+      id="description"
+      rows="4"
+      placeholder="Describe the item..."
+      class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1f2937] p-3 text-base text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+    ></textarea>
+    <span class="error" id="error-description"></span>
+  </div>
+
+  <div>
+    <label for="itemCondition" class="block mb-2">Condition:</label>
+    <input
+      type="text"
+      id="itemCondition"
+      placeholder="e.g., Like new, Used"
+      class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1f2937] p-3 text-base text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+    />
+    <span class="error" id="error-itemCondition"></span>
+  </div>
+
+  <div>
+    <label for="itemAction" class="block mb-2">Action:</label>
+    <select
+      id="itemAction"
+      class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1f2937] p-3 text-base text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+    >
+      <option value="">Select action</option>
+      <option>Swap</option>
+      <option>Lend</option>
+      <option>Donate</option>
+    </select>
+    <span class="error" id="error-itemAction"></span>
+  </div>
+
+  <div>
+    <label for="location" class="block mb-2">Location:</label>
+    <input
+      type="text"
+      id="location"
+      class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1f2937] p-3 text-base text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+    />
+    <span class="error" id="error-location"></span>
+  </div>
+
+  <div>
+    <label for="email" class="block mb-2">Email:</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="example@gmail.com"
+      class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1f2937] p-3 text-base text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+    />
+    <span class="error" id="error-email"></span>
+  </div>
+
+  <div>
+    <label for="phone" class="block mb-2">Phone:</label>
+    <input
+      type="tel"
+      id="phone"
+      maxlength="10"
+      placeholder="1234567890"
+      class="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1f2937] p-3 text-base text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+    />
+    <span class="error" id="error-phone"></span>
+  </div>
+<button
+    type="submit"
+    class="w-full py-3 bg-primary rounded-md font-semibold text-white hover:bg-secondary transition"
+  >
+    Request Item
+  </button>
+</form>
+</section>
+
+  </main>
+
+  <script>
+    // Theme toggle logic
+    const toggleBtn = document.getElementById("theme-toggle");
+    const sunIcon = document.getElementById("icon-sun");
+    const moonIcon = document.getElementById("icon-moon");
+  
+    function updateThemeIcons() {
+      if (document.body.classList.contains("dark")) {
+        sunIcon.style.display = "block";
+        moonIcon.style.display = "none";
+      } else {
+        sunIcon.style.display = "none";
+        moonIcon.style.display = "block";
+      }
+    }
+  
+    function loadTheme() {
+      const savedTheme = localStorage.getItem("theme");
+      if (
+        savedTheme === "dark" ||
+        (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.body.classList.add("dark");
+      } else {
+        document.body.classList.remove("dark");
+      }
+      updateThemeIcons();
+    }
+  
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+      updateThemeIcons();
+    });
+  
+    loadTheme();
+  
+    
+    // Form validation
+    const form = document.getElementById("itemForm");
+  
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      let isValid = true;
+  
+      // Helper
+      function showError(id, message) {
+        document.getElementById("error-" + id).textContent = message;
+        isValid = false;
+      }
+  
+      function clearError(id) {
+        document.getElementById("error-" + id).textContent = "";
+      }
+  
+      // Fields
+      const category = document.getElementById("category").value.trim();
+      const itemName = document.getElementById("itemName").value.trim();
+      const description = document.getElementById("description").value.trim();
+      const condition = document.getElementById("itemCondition").value.trim();
+      const action = document.getElementById("itemAction").value.trim();
+      const location = document.getElementById("location").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const files = itemPhotosInput.files;
+  
+      // Validate
+      isValid = true;
+      if (!category) showError("category", "Please select a category.");
+      else clearError("category");
+  
+      if (!itemName) showError("itemName", "Item name is required.");
+      else clearError("itemName");
+  
+      if (!description) showError("description", "Description is required.");
+      else clearError("description");
+  
+      if (!condition) showError("itemCondition", "Condition is required.");
+      else clearError("itemCondition");
+  
+      if (!action) showError("itemAction", "Please choose an action.");
+      else clearError("itemAction");
+  
+      if (!location) showError("location", "Location is required.");
+      else clearError("location");
+  
+      if (!email || !/\S+@\S+\.\S+/.test(email)) showError("email", "Valid email is required.");
+      else clearError("email");
+  
+      if (!phone || !/^\d{10}$/.test(phone)) showError("phone", "Valid 10-digit phone is required.");
+      else clearError("phone");
+  
+      if (files.length === 0) showError("itemPhotos", "Please upload at least 1 image.");
+      else if (files.length > 4) showError("itemPhotos", "Maximum 4 images allowed.");
+      else clearError("itemPhotos");
+  
+      if (isValid) {
+        alert("Form submitted successfully!");
+        // You can now send the data to your server or reset the form
+        // form.reset();
+      }
+    });
+  </script>
+  
+</body>
+</html>
