@@ -58,5 +58,3 @@ Users can reduce waste, reuse resources, and earn GreenPoints for eco-friendly a
 - Firebase Authentication  
 
 ---
-
-## 🏗️ Project Structure  
