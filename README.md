@@ -1,37 +1,62 @@
-# 💼 Smart Resume-Based Student Shortlisting System
+# 🌱 EcoSwap – Smart Item Sharing & Sustainable Exchange Platform  
 
-A web-based application that automates the process of shortlisting students using resume data such as skills, CGPA, and projects.
-
----
-
-## 🚀 Features
-
-- 📄 Resume upload / form-based input  
-- 🧠 Automated scoring based on criteria  
-- 📊 Candidate ranking system  
-- ✅ Shortlisted students display  
-- 🔍 Filter by skills and qualifications  
+## 📌 Overview  
+EcoSwap is a web-based platform that promotes sustainable living by allowing users to share, swap, lend, or request items within a community.  
+Users can reduce waste, reuse resources, and earn GreenPoints for eco-friendly actions.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Features  
 
-- Frontend: HTML, CSS, JavaScript  
-- Backend: Node.js / Flask  
-- Database: MySQL  
+### 🔐 Authentication  
+- Secure login system using Firebase Authentication  
+- User session handling  
+
+### 🏠 Landing Page  
+- Modern responsive UI with animations  
+- Sections: Features, Workflow, GreenPoints  
+
+### 📊 Dashboard  
+- User profile management  
+- Dark/Light mode toggle  
+- Profile image upload  
+
+### 📦 Add Items  
+- Add items with name, category, description  
+- Condition (new/used)  
+- Action (swap/lend/donate)  
+- Location & contact details  
+- Image preview before submission  
+
+### 🙋 Request Items  
+- Request items from the community  
+- Form validation + review before submission  
+
+### 📋 Posted Items Tracking  
+- View posted items  
+- Grouped by date  
+- Search functionality  
+- Status indicator for accepted requests  
+
+### 👥 Request Management  
+- View users who requested your item  
+- Accept or reject requests  
+- Only one request can be accepted at a time  
 
 ---
 
-## 🎯 Objective
+## 🛠️ Tech Stack  
 
-To simplify and automate the student shortlisting process by reducing manual effort and improving selection accuracy.
+### Frontend  
+- HTML5  
+- CSS3  
+- Tailwind CSS  
+- JavaScript  
+
+### Backend / Database  
+- Firebase Firestore  
+- Firebase Authentication  
 
 ---
 
-## 📌 How It Works
-
-1. Student submits details or uploads resume  
-2. Data is stored in the database  
-3. System evaluates based on predefined criteria  
-4. Generates scores and ranks candidates  
-5. Displays shortlisted students  
+## 🏗️ Project Structure  
