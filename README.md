@@ -1,60 +1,56 @@
-# 🌱 EcoSwap – Smart Item Sharing & Sustainable Exchange Platform  
+# TalentAI – AI-Powered Recruitment & Career Intelligence Platform
 
-## 📌 Overview  
-EcoSwap is a web-based platform that promotes sustainable living by allowing users to share, swap, lend, or request items within a community.  
-Users can reduce waste, reuse resources, and earn GreenPoints for eco-friendly actions.
+## Overview
 
----
+TalentAI is an AI-powered recruitment and career guidance platform designed to help job seekers and recruiters streamline the hiring process. The platform provides intelligent resume analysis, job matching, career recommendations, and recruiter management features.
 
-## 🚀 Features  
+## Features
 
-### 🔐 Authentication  
-- Secure login system using Firebase Authentication  
-- User session handling  
+* Resume Analysis using AI
+* Intelligent Job Matching
+* RAG-Based Career Guidance Chatbot
+* Recruiter Dashboard for Candidate Management
+* Secure User Authentication using JWT
+* Personalized Career Recommendations
 
-### 🏠 Landing Page  
-- Modern responsive UI with animations  
-- Sections: Features, Workflow, GreenPoints  
+## Tech Stack
 
-### 📊 Dashboard  
-- User profile management  
-- Dark/Light mode toggle  
-- Profile image upload  
+### Frontend
 
-### 📦 Add Items  
-- Add items with name, category, description  
-- Condition (new/used)  
-- Action (swap/lend/donate)  
-- Location & contact details  
-- Image preview before submission  
+* HTML
+* CSS
+* JavaScript
 
-### 🙋 Request Items  
-- Request items from the community  
-- Form validation + review before submission  
+### Backend
 
-### 📋 Posted Items Tracking  
-- View posted items  
-- Grouped by date  
-- Search functionality  
-- Status indicator for accepted requests  
+* Node.js
+* Express.js
 
-### 👥 Request Management  
-- View users who requested your item  
-- Accept or reject requests  
-- Only one request can be accepted at a time  
+### Database
 
----
+* MongoDB
 
-## 🛠️ Tech Stack  
+### AI & Tools
 
-### Frontend  
-- HTML5  
-- CSS3  
-- Tailwind CSS  
-- JavaScript  
+* ChromaDB
+* RAG (Retrieval-Augmented Generation)
+* JWT Authentication
+* Docker
 
-### Backend / Database  
-- Firebase Firestore  
-- Firebase Authentication  
+## Project Objectives
 
----
+* Simplify the recruitment process for recruiters.
+* Help job seekers identify suitable career opportunities.
+* Provide AI-driven insights through resume analysis and job recommendations.
+* Enable interactive career guidance through a chatbot.
+
+## Future Enhancements
+
+* Interview preparation module
+* Skill gap analysis
+* Resume score prediction
+* Real-time job portal integration
+
+## Contributors
+
+Developed as an academic project to explore AI applications in recruitment and career intelligence systems.
