@@ -1,56 +1,16 @@
-# TalentAI – AI-Powered Recruitment & Career Intelligence Platform
+# React + Vite
 
-## Overview
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-TalentAI is an AI-powered recruitment and career guidance platform designed to help job seekers and recruiters streamline the hiring process. The platform provides intelligent resume analysis, job matching, career recommendations, and recruiter management features.
+Currently, two official plugins are available:
 
-## Features
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-* Resume Analysis using AI
-* Intelligent Job Matching
-* RAG-Based Career Guidance Chatbot
-* Recruiter Dashboard for Candidate Management
-* Secure User Authentication using JWT
-* Personalized Career Recommendations
+## React Compiler
 
-## Tech Stack
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### Frontend
+## Expanding the ESLint configuration
 
-* HTML
-* CSS
-* JavaScript
-
-### Backend
-
-* Node.js
-* Express.js
-
-### Database
-
-* MongoDB
-
-### AI & Tools
-
-* ChromaDB
-* RAG (Retrieval-Augmented Generation)
-* JWT Authentication
-* Docker
-
-## Project Objectives
-
-* Simplify the recruitment process for recruiters.
-* Help job seekers identify suitable career opportunities.
-* Provide AI-driven insights through resume analysis and job recommendations.
-* Enable interactive career guidance through a chatbot.
-
-## Future Enhancements
-
-* Interview preparation module
-* Skill gap analysis
-* Resume score prediction
-* Real-time job portal integration
-
-## Contributors
-
-Developed as an academic project to explore AI applications in recruitment and career intelligence systems.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
